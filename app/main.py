@@ -10,6 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.config import settings
 from app.modules.cms.router import router as cms_router
 from app.modules.cms.schemas import InvalidNoteTypeError
+from app.modules.generator.router import router as generator_router
 from app.shared.database import Base, engine, get_db
 
 
@@ -60,6 +61,7 @@ async def invalid_note_type_exception_handler(
 
 # Registrar routers
 app.include_router(cms_router, prefix="/api/v1/articulos", tags=["CMS"])
+app.include_router(generator_router, prefix="/api/v1/generator", tags=["Generator API"])
 
 
 @app.get("/health", tags=["Health"])
